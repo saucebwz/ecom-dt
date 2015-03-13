@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Category{% endblock %}
+
+{% block content %}
+    {% if category %}
+        <p>{{ category.name }}</p>
+        <p>{{ category.description }}</p>
+    {% else %}
+        <p>No categories</p>
+    {% endif %}
+    {% if products %}
+        {% for product in products %}
+            <p>Product name: {{ product.name }}</p>
+            <p>Product price: {{ product.price }}RUB</p>
+            <p>Product quantity: {{ product.quantity }}</p>
+            <hr />
+        {% endfor %}
+    {% else %}
+        <p>No products in the catalog</p>
+    {% endif %}
+{% endblock %}
