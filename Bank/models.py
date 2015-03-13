@@ -36,7 +36,7 @@ class Product(models.Model):
     name = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(max_length=150, unique=True)
     price = models.DecimalField(max_digits=9, decimal_places=2)
-    #image = models.ImageField(upload_to='media_images/')
+    image = models.ImageField(upload_to='media/images/', blank=True, default="no")
     quantity = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     catalog = models.ManyToManyField(Category)
@@ -49,6 +49,8 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('product', args=(self.slug, ))
+
+
 
 
 class MyUserManager(BaseUserManager):
