@@ -7,17 +7,125 @@ body{
     margin: 0 auto;
 }
 
+p{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+}
+
 .head-container{
-    height: 200px;
-    margin-bottom: 50px;
-    background-color: #8C489F;
-    border-bottom: 5px solid #443266;
+    height: 100px;
+    background-color: white;
 }
 .header{
-    padding-top: 60px;
+    padding-top: 45px;
     text-align: center;
-    color: #F1F0FF;
-    font-family: Arial;
-    font-size: 50px;
+    color: #231f20;
+    font-size: 25px;
+    text-transform: uppercase;
+}
+.main-title{
+    float: left;
+    font-family: 'Montserrat', sans-serif;
+}
+.navbar{
+    float: right;
+}
+.navbar li{
+    float: left;
+    margin-left: 15px;
+    list-style-type: none;
+}
+.navbar li:first-child{
+    margin-left: 0;
+}
+
+a{
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    color: #231f20;
+}
+
+a:visited{
+    color: #231f20;
+}
+
+.navbar a{
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.navbar a:hover{
+    border-bottom: 3px solid black;
+}
+
+.menu{
+    height: 100px;
+}
+
+.content{
+    background-color: white;
+}
+
+.content h2{
+    color: #767676;
+    font-size: 1em;
+}
+.top{
+    border-top: 1px solid #ddd;
+    margin: 10px 0 10px 0;
 
 }
+
+.categories-navbar{
+    float: right;
+}
+
+.categories-navbar li{
+    float: left;
+    margin-left: 10px;
+    list-style: none;
+}
+
+.categories-navbar li a{
+    font-size: 12px;
+    color: #999;
+}
+
+.categories-navbar li a:hover{
+   color: #231f20;
+}
+
+.product-block{
+    font-size: 12px;
+    float: left;
+    width: 220px;
+    text-align: center;
+}
+
+.product-description{
+    margin-top: 10px;
+    color: #999;
+}
+
+
+.menu-title{
+    float: left;
+}
+.menu-title p{
+    text-transform: uppercase;
+    padding-right: 25px;
+    border-right: 1px solid #ddd;
+}
+
+.cf:before,
+.cf:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.cf:after {
+    clear: both;
+}
+
+

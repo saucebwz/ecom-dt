@@ -19,12 +19,13 @@ class Category(models.Model):
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
+    is_first = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ['-is_first']
         verbose_name_plural = 'Categories'
 
     def get_absolute_url(self):
@@ -37,6 +38,7 @@ class Product(models.Model):
     slug = models.SlugField(max_length=150, unique=True)
     price = models.DecimalField(max_digits=9, decimal_places=2)
     image = models.ImageField(upload_to='media/images/', blank=True, default="no")
+    description = models.TextField(max_length=300, default="No description")
     quantity = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     catalog = models.ManyToManyField(Category)

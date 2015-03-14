@@ -3,13 +3,15 @@
 {% block title %} Main Page-{{ block.super }} {% endblock %}
 
 {% block content %}
-    <p>Welcome to the shop, {{ user.username }}</p>
-    <p>You can look up to our catalogs: </p>
-    <hr />
     <div>
         {% if categories %}
-            {% for category in categories %}
-                <a href="{% url 'category' category.slug %}">{{ category.name }}</a>
+
+            {% for product in all_category.product_set.all %}
+                    <div class="product-block">
+                        <img src="{{ MEDIA_URL }}{{ product.image }}"  width="220px" height="259"/>
+                        <a href="{% url 'product' product.slug %}">{{ product.name }}</a>
+                        <p class="product-description">{{ product.description }}</p>
+                    </div>
             {% endfor %}
         {% else %}
             <p>No categories at the moment!</p>

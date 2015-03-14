@@ -4,15 +4,44 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>{% block title %} E-commerce {% endblock %}</title>
+    <link href='//fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="{% static 'Bank/style.css' %}"
+
 </head>
 <body>
     <div class="head-container">
         <div class="header">
-            E-Commerce On Django!
+            <p class="main-title">E-Commerce On Django!</p>
+            <ul class="navbar">
+                <li><a href="">Contact with us</a> </li>
+                <li><a href="">About us</a></li>
+            </ul>
+        </div>
+        <div class="cf"></div>
+    </div>
+    <div class="menu-container">
+        <div class="menu-categories">
+            <div class="top"></div>
+                <div class="menu-title">
+                    <p>Catalogs</p>
+                </div>
+                <div class="categories-list">
+                    <ul class="categories-navbar">
+                        {% if categories %}
+                            {% for category in categories %}
+                                <li><a href="{% url 'category' category.slug%}">{{ category.name|upper}}</a></li>
+                            {% endfor %}
+                        {% else %}
+                            <p>No categories! Sorry.</p>
+                        {% endif %}
+
+                    </ul>
+                </div>
+            <div class="cf"></div>
+            <div class="top"></div>
         </div>
     </div>
-    <div id="content">
+    <div class="content">
         {% block content %}{% endblock %}
     </div>
 </body>

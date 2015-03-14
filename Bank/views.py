@@ -34,8 +34,10 @@ def login_page(request):
 @login_required(login_url=reverse_lazy('login_page'))
 def main_view(request):
     categories = Category.objects.filter(is_active=True)
+    all = categories.get(name="All")
     return render_to_response('main.html', {'user': MyBankUser.objects.get(pk=request.user.id),
-                                            'categories': categories}, context_instance=RequestContext(request))
+                                            'categories': categories,
+                                            'all_category': all}, context_instance=RequestContext(request))
 
 
 def logout_view(request):
