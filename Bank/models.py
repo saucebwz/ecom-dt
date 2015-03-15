@@ -52,6 +52,9 @@ class Product(models.Model):
     def get_absolute_url(self):
         return reverse('product', args=(self.slug, ))
 
+    def get_price(self):
+        return str(self.price) + "$"
+
 
 
 

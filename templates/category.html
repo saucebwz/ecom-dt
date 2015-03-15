@@ -4,22 +4,19 @@
 {% block title %}Category{% endblock %}
 
 {% block content %}
-    {% if category %}
-        <p>{{ category.name }}</p>
-        <p>{{ category.description }}</p>
-    {% else %}
-        <p>No categories</p>
-    {% endif %}
-    {% if products %}
-        {% for product in products %}
-            <p>Product name: {{ product.name }}</p>
-            <p>Product price: {{ product.price }}RUB</p>
-            <p>Product quantity: {{ product.quantity }}</p>
-            <p>Product image: <img src="{{ MEDIA_URL }}{{ product.image }}" width="220px" height="259" /></p>
+     <div>
+        {% if category %}
 
-            <hr />
-        {% endfor %}
-    {% else %}
-        <p>No products in the catalog</p>
-    {% endif %}
+            {% for product in category.product_set.all %}
+                    <div class="product-block">
+                        <img src="{{ MEDIA_URL }}{{ product.image }}"  width="220px" height="259"/>
+                        <a href="{% url 'product' product.slug %}">{{ product.name }}</a>
+                        <p class="product-price"><b>{{ product.get_price }}</b></p>
+                        <p class="product-description">{{ product.description }}</p>
+                    </div>
+            {% endfor %}
+        {% else %}
+            <p>No categories at the moment!</p>
+        {% endif %}
+    </div>
 {% endblock %}

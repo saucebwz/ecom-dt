@@ -5,11 +5,11 @@
 {% block content %}
     <div>
         {% if categories %}
-
             {% for product in all_category.product_set.all %}
                     <div class="product-block">
                         <img src="{{ MEDIA_URL }}{{ product.image }}"  width="220px" height="259"/>
                         <a href="{% url 'product' product.slug %}">{{ product.name }}</a>
+                        <p class="product-price"><b>{{ product.get_price }}</b></p>
                         <p class="product-description">{{ product.description }}</p>
                     </div>
             {% endfor %}

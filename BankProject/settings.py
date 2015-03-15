@@ -36,7 +36,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Bank'
+    'Bank',
+    'cart'
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -90,7 +91,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_ROOT = 'C:/Users/user/PycharmProjects/BankProject/'
 MEDIA_URL = '/media/'
-
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,  'templates'),
