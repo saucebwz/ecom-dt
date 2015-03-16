@@ -1,4 +1,5 @@
 import random
+import decimal
 from cart.models import CartItem
 from django.shortcuts import get_object_or_404
 from Bank.models import Product
@@ -41,9 +42,16 @@ def add_to_cart(request):
         ci.cart_id = test
         ci.save()
 
+def get_full_price(request):
+    total = decimal.Decimal('0.00')
+    products = get_cart_items(request)
+    for item in products:
+        total += item.product.price * item.quantity
+    return str(total) + "$"
 
 def cart_item_count(request):
     return get_cart_items(request).count()
 
-
+def get_item(request, item_id):
+    return get_object_or_404(CartItem, id=item_id, cart_id=_cart_id(request))
 

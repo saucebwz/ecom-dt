@@ -72,7 +72,9 @@ def category_view(request, category_slug):
 
 
 def product_view(request, product_slug):
+
     product = get_object_or_404(Product, slug=product_slug)
+    all_categories = Category.objects.all()
     if request.method == 'POST':
         postdata = request.POST.copy()
         form = AddProductToCartForm(request, postdata)
@@ -83,9 +85,9 @@ def product_view(request, product_slug):
             return HttpResponseRedirect(reverse('cart_view'))
     else:
         form = AddProductToCartForm(request, label_suffix=":")
-
     form.fields['product_slug'].widget.attrs['value'] = product_slug
     request.session.set_test_cookie()
-    return render_to_response('product.html', {'product': product, 'form': form}, context_instance=RequestContext(request))
+    categories = Category.objects.filter(is_active=True)
+    return render_to_response('product.html', {'product': product, 'categories': categories, 'form': form}, context_instance=RequestContext(request))
 
 

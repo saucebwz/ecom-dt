@@ -1,14 +1,36 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-{% for item in cart_items %}
-    {{ item.quantity }}
-{% endfor %}
-{{ cart_item_count }}
-test
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Cart{% endblock %}
+{% block content %}
+    {% if cart_items %}
+    <table style="border:0;" class="cart-table">
+            <tr>
+                <th width="50%">Item</th>
+                <th width="5%">Price</th>
+                <th width="40%">Quantity</th>
+                <th width="5%">Price</th>
+            </tr>
+    {% for item in cart_items %}
+            <tr>
+                <td><img src="{{ MEDIA_URL }}{{ item.image }}" width="20px" height="20px" /><span>{{ item.name }}</span></td>
+                <td>{{ item.price }}</td>
+                <td>
+                    <form action="." method="post">
+                        {% csrf_token %}
+                        <input type="text" value="{{ item.quantity }}" name="quantity" />
+                        <input type="hidden" name="item_id" value="{{ item.id }}"/>
+                        <input type="submit" value="Update" name="submit" class="cart-update-delete-button"/>
+                        <input type="submit" value="Delete" name="submit" class="cart-update-delete-button">
+                    </form>
+                </td>
+                <td>{{ item.get_full_price }}</td>
+            </tr>
+    {% endfor %}
+    </table>
+    <div class="top" style="margin: 40px 0 40px 0"></div>
+    <div class="pay-info">
+        <p>Total: {{ total_sum }}</p>
+    {% else %}
+        <p>No products in the cart!</p>
+    {% endif %}
+    </div>
+{% endblock %}

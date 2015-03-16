@@ -17,8 +17,14 @@ class CartItem(models.Model):
     def name(self):
         return self.product.name
 
+    def get_full_price(self):
+        return str(self.product.price * self.quantity) + "$"
+
     def price(self):
-        return self.product.price
+        return self.product.get_price()
+
+    def image(self):
+        return self.product.image
 
     def get_absolute_url(self):
         self.product.get_absolute_url()

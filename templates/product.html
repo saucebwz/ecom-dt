@@ -3,16 +3,22 @@
 {% block title %} Product {{ product.name }} {% endblock %}
 
 {% block content %}
-    <p>Product name: {{ product.name }}</p>
-    <p>Product price: {{ product.price }}RUB</p>
-    <p>Product quantity: {{ product.quantity }}</p>
-    <p>Product image: {{ product.image }}</p>
+    <div class="product-image">
+          <img src="{{ MEDIA_URL }}{{ product.image }}"/>
+    </div>
+    <div class="product-info">
+        <h2>{{ product.name }}</h2>
+        <p class="product-price">{{ product.get_price }}</p>
+        <p class="product-description">{{ product.description }}</p>
+        <div class="send-product-info">
+            <form action="." method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Add" class="product-send-button"/>
+            </form>
 
-    <form action="." method="post">
-    {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Add" />
+        </div>
+    </div>
 
-    </form>
 
 {% endblock %}
